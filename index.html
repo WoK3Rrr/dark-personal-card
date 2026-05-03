@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Онлайн-визитка Александр</title>
+  <meta name="description" content="Универсальная тёмная онлайн-визитка специалиста по продажам и предпринимателя." />
+  <style>
+    :root {
+      --bg: #05070b;
+      --bg-soft: #0a0f17;
+      --surface: rgba(13, 18, 28, 0.76);
+      --surface-strong: #0d1320;
+      --border: rgba(132, 153, 191, 0.14);
+      --border-strong: rgba(132, 153, 191, 0.22);
+      --text: #f2f5fb;
+      --muted: #98a4b8;
+      --muted-strong: #bcc6d6;
+      --accent: #8ea7ff;
+      --accent-2: #7cf2d4;
+      --accent-3: #b889ff;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(142, 167, 255, 0.09), transparent 26%),
+        radial-gradient(circle at top right, rgba(184, 137, 255, 0.07), transparent 24%),
+        linear-gradient(180deg, #05070b 0%, #060a11 100%);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 7, 11, 0.65);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.98rem;
+      color: var(--muted-strong);
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(142, 167, 255, 0.45);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.22s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero {
+      padding: 72px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent-2);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 10ch;
+      font-size: clamp(3.2rem, 8vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-title-accent {
+      display: block;
+      color: #ccd6eb;
+      font-weight: 500;
+    }
+
+    .hero-role {
+      margin: 18px 0 0;
+      font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+      color: var(--muted-strong);
+      letter-spacing: -0.03em;
+      max-width: 28ch;
+    }
+
+    .hero-text {
+      margin: 22px 0 0;
+      max-width: 40rem;
+      font-size: 1.06rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 58px;
+      padding: 0 22px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      color: #09101b;
+      background: linear-gradient(135deg, #eef3ff 0%, #cfe0ff 100%);
+      box-shadow: 0 16px 50px rgba(142, 167, 255, 0.17);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      border-color: var(--border-strong);
+    }
+
+    .button.secondary:hover {
+      border-color: rgba(142, 167, 255, 0.38);
+      box-shadow: 0 10px 30px rgba(142, 167, 255, 0.08);
+    }
+
+    .hero-side {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-side-label {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .mini-stats {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-stat {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 26px 0;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .about-card {
+      max-width: 860px;
+      padding: 28px 30px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
+    }
+
+    .about-card p {
+      margin: 0;
+      font-size: clamp(1.16rem, 1.8vw, 1.42rem);
+      line-height: 1.55;
+      color: #d9e1ef;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 132px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        rgba(10, 15, 23, 0.82);
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, 0.16);
+      isolation: isolate;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(142, 167, 255, 0.22), transparent 62%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+    }
+
+    .contact-card::after {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -20%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(124, 242, 212, 0.14), transparent 62%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+    }
+
+    .contact-card:hover,
+    .contact-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(142, 167, 255, 0.28);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(142, 167, 255, 0.05),
+        0 0 42px rgba(142, 167, 255, 0.12);
+    }
+
+    .contact-card:hover::before,
+    .contact-card:hover::after,
+    .contact-card:focus-visible::before,
+    .contact-card:focus-visible::after {
+      opacity: 1;
+    }
+
+    .contact-card:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    .contact-icon {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+      color: #d9e1ef;
+    }
+
+    .contact-meta {
+      min-width: 0;
+    }
+
+    .contact-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-value {
+      display: block;
+      color: var(--text);
+      font-size: clamp(1.18rem, 1.8vw, 1.42rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      word-break: break-word;
+    }
+
+    .site-footer {
+      padding: 28px 0 40px;
+    }
+
+    .footer-line {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      margin-bottom: 22px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .muted-note {
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .about-card {
+        padding: 22px 20px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        min-height: 118px;
+        padding: 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="На главную">
+        <span class="brand-mark"></span>
+        <span>Персональная карта</span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Продажи · Маркетинг · Бизнес</p>
+          <h1>
+            Александр Александрович
+            <span class="hero-title-accent">Смирнов</span>
+          </h1>
+          <p class="hero-role">Специалист по продажам, 9 лет в работе с клиентами, предприниматель.</p>
+          <p class="hero-text">
+            Помогаю выстраивать коммуникацию, доводить диалог до результата и видеть за продажей не только сделку,
+            но и систему отношений, доверия и роста.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#contacts">Связаться</a>
+            <a class="button secondary" href="#about">Коротко обо мне</a>
+          </div>
+        </div>
+
+        <aside class="hero-side" aria-label="Ключевые акценты">
+          <p class="hero-side-label">Фокус</p>
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>9 лет</strong>
+              <span>в работе с клиентами и коммуникацией</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Продажи</strong>
+              <span>переговоры, ведение клиента, развитие отношений</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Предприниматель</strong>
+              <span>понимание результата не только со стороны исполнителя, но и со стороны владельца</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">Обо мне</h2>
+        <div class="about-card">
+          <p>
+            Работаю на стыке продаж, клиентского взаимодействия и предпринимательского мышления. Умею выстраивать
+            контакт, держать доверие в коммуникации и доводить процесс до понятного результата — без лишнего шума,
+            с вниманием к людям, задачам и реальной пользе.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contact-grid">
+          <a class="contact-card" href="https://t.me/RostAlexandr" target="_blank" rel="noreferrer noopener">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M21 4L3.9 10.58c-1.17.46-1.16 1.12-.21 1.41l4.39 1.37 10.16-6.41c.48-.29.92-.13.56.19l-8.23 7.43-.31 4.62c.45 0 .64-.21.9-.45l2.19-2.13 4.55 3.36c.84.46 1.44.22 1.65-.78L22 5.26C22.31 4.01 21.53 3.44 21 4Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="contact-meta">
+              <span class="contact-label">Telegram</span>
+              <span class="contact-value">@RostAlexandr</span>
+            </div>
+          </a>
+
+          
+
+          
+
+          <a class="contact-card" href="tel:+79960724770">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M6.8 4.5h2.44c.39 0 .73.27.82.64l.56 2.24a.85.85 0 0 1-.24.82l-1.52 1.52a13.7 13.7 0 0 0 5.42 5.42l1.52-1.52a.85.85 0 0 1 .82-.24l2.24.56c.37.09.64.43.64.82v2.44c0 .47-.38.85-.85.85C10.86 19.05 4.95 13.14 4.95 5.35c0-.47.38-.85.85-.85Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="contact-meta">
+              <span class="contact-label">Телефон</span>
+              <span class="contact-value">+7 996 072 47 70</span>
+            </div>
+          </a>
+
+          <a class="contact-card" href="mailto:ray.incognito@gmail.com">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M6 8l6 5 6-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="contact-meta">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">ray.incognito@gmail.com</span>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://instagram.com/lilmirn" target="_blank" rel="noreferrer noopener">
+  <div class="contact-icon" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="contact-meta">
+    <span class="contact-label">Instagram</span>
+    <span class="contact-value">@lilmirn</span>
+  </div>
+</a>
+
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-line"></div>
+      <div class="footer-inner">
+        <span>© 2026 Александр</span>
+        <span class="muted-note">онлайн-визитка</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
